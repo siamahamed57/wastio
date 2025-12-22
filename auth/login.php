@@ -1,3 +1,5 @@
+
+
 <?php
 session_start();
 require_once "../config/db.php";
@@ -97,7 +99,6 @@ if(isset($_POST['login'])){
     <link rel="stylesheet" href="../assets/css/index.css">
 </head>
 <body>
-
 <div class="container">
 
 <div class="header">

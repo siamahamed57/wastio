@@ -9,16 +9,16 @@ $userRole = isset($_SESSION['role']) ? $_SESSION['role'] : '';
 
 <header>
     <nav class="nav-container">
-        <a href="index.php" class="logo">♻ Wastio</a>
+        <a href="home.php" class="logo">♻ Wastio</a>
         
         <button class="menu-toggle" onclick="toggleMenu()">☰</button>
         
         <ul class="nav-menu" id="navMenu">
-            <li><a href="index.php">Home</a></li>
-            <li><a href="../pages/browse.php">Browse Waste Items</a></li>
-            <li><a href="../pages/how-it-works.php">How It Works</a></li>
-            <li><a href="../pages/about.php">About Us</a></li>
-            <li><a href="../pages/contact.php">Contact</a></li>
+            <li><a href="home.php">Home</a></li>
+            <li><a href="browse.php">Browse Waste Items</a></li>
+            <li><a href="how-it-works.php">How It Works</a></li>
+            <li><a href="about.php">About Us</a></li>
+            <li><a href="contact.php">Contact</a></li>
             
             <?php if($isLoggedIn){ ?>
                 <?php
@@ -40,7 +40,7 @@ $userRole = isset($_SESSION['role']) ? $_SESSION['role'] : '';
                 ?>
                 <li><a href="<?php echo $dashboardLink; ?>" class="dashboard-btn">Dashboard</a></li>
             <?php }else{ ?>
-                <li><a href="./auth/login.php" class="login-btn">Login</a></li>
+                <li><a href="auth/login.php" class="login-btn">Login</a></li>
             <?php } ?>
         </ul>
     </nav>
