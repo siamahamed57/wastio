@@ -1,0 +1,9 @@
+1.Clone the repository
+2.Create the database using the db.sql file ,You can find the db.sql file in the database folder
+3.Configure the database connection in the config/db.php file  
+4.Run the application
+Registration with your role
+Login with email and password
+Then start your works with your role
+Create new branch related to your role (ex: seller/add-new-product, buyer/buy-product, agent/collect-product, admin/add-new-product)
+Push them in the branch
