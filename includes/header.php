@@ -1,5 +1,5 @@
 <?php
-if(!isset($_SESSION)){
+if (!isset($_SESSION)) {
     session_start();
 }
 
@@ -27,9 +27,9 @@ $userRole = isset($_SESSION['role']) ? $_SESSION['role'] : '';
             <li><a href="/wastio/about.php">About Us</a></li>
             <li><a href="/wastio/contact.php">Contact</a></li>
 
-            <?php if($isLoggedIn){ 
+            <?php if ($isLoggedIn) {
                 $dashboardLink = "";
-                switch($userRole){
+                switch ($userRole) {
                     case 'Waste Buyer':
                         $dashboardLink = "/wastio/buyer/dashboard.php";
                         break;
@@ -37,13 +37,13 @@ $userRole = isset($_SESSION['role']) ? $_SESSION['role'] : '';
                         $dashboardLink = "/wastio/seller/dashboard.php";
                         break;
                     case 'Collection Agent':
-                        $dashboardLink = "/wastio/agent/dashboard.php";
+                        $dashboardLink = "/wastio/agent/pickupagent/dashboard.php";
                         break;
                     case 'System Admin':
                         $dashboardLink = "/wastio/admin/dashboard.php";
                         break;
                 }
-            ?>
+                ?>
                 <li><a href="<?= $dashboardLink ?>" class="dashboard-btn">Dashboard</a></li>
             <?php } else { ?>
                 <li><a href="/wastio/auth/login.php" class="login-btn">Login</a></li>
@@ -53,7 +53,7 @@ $userRole = isset($_SESSION['role']) ? $_SESSION['role'] : '';
 </header>
 
 <script>
-function toggleMenu(){
-    document.getElementById('navMenu').classList.toggle('active');
-}
+    function toggleMenu() {
+        document.getElementById('navMenu').classList.toggle('active');
+    }
 </script>
