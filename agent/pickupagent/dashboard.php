@@ -49,7 +49,7 @@ $history_count = mysqli_fetch_assoc($history_res)['count'];
                 <div class="welcome-text">
                     <h2>
                         <button class="mobile-toggle" id="mobileToggle" style="margin-right:10px;">☰</button>
-                        👋 Hello, Agent
+                        👋 Welcome, <?= htmlspecialchars($_SESSION['user_name']) ?>
                     </h2>
                     <p>Here's what's happening today.</p>
                 </div>

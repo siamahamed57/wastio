@@ -14,9 +14,26 @@ $user_sql = "SELECT * FROM users WHERE user_id = '$agent_id'";
 $user_res = mysqli_query($conn, $user_sql);
 $user = mysqli_fetch_assoc($user_res);
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Handle status update (simulated as field might not exist)
-    $msg = "Profile updated successfully!";
+if (isset($_POST['change_details'])) {
+    $fullName = mysqli_real_escape_string($conn, $_POST['full_name']);
+    $newPassword = $_POST['new_password'];
+
+    if (!empty($newPassword)) {
+        $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+        $updateSql = "UPDATE users SET full_name = '$fullName', password_hash = '$hashedPassword' WHERE user_id = '$agent_id'";
+    } else {
+        $updateSql = "UPDATE users SET full_name = '$fullName' WHERE user_id = '$agent_id'";
+    }
+
+    if (mysqli_query($conn, $updateSql)) {
+        $msg = "Profile updated successfully!";
+        $_SESSION['user_name'] = $fullName; // Update session name
+        // Refresh user data
+        $user_res = mysqli_query($conn, $user_sql);
+        $user = mysqli_fetch_assoc($user_res);
+    } else {
+        $msg = "Error updating profile: " . mysqli_error($conn);
+    }
 }
 ?>
 
@@ -44,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         .form-group label {
             display: block;
             margin-bottom: 8px;
-            font- weight: 600;
+            font-weight: 600;
         }
 
         .form-control {
@@ -70,29 +87,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
 
             <?php if (isset($msg))
-                echo "<div class='alert' style='color:green'>$msg</div>"; ?>
+                echo "<div class='alert' style='color:green; margin-bottom: 20px;'>$msg</div>"; ?>
 
             <div class="profile-card">
                 <form method="POST">
                     <div class="form-group">
                         <label>Full Name</label>
-                        <input type="text" class="form-control" value="<?= $user['full_name'] ?? 'Agent Name' ?>"
-                            readonly>
+                        <input type="text" name="full_name" class="form-control"
+                            value="<?= htmlspecialchars($user['full_name'] ?? '') ?>" required>
                     </div>
                     <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" class="form-control" value="<?= $user['email'] ?? 'agent@wastio.com' ?>"
-                            readonly>
+                        <label>Email (Cannot be changed)</label>
+                        <input type="email" class="form-control" value="<?= htmlspecialchars($user['email'] ?? '') ?>"
+                            readonly style="background-color: #f5f5f5; cursor: not-allowed;">
                     </div>
                     <div class="form-group">
-                        <label>Current Status</label>
-                        <select class="form-control">
-                            <option>Available</option>
-                            <option>Busy</option>
-                            <option>Off Duty</option>
-                        </select>
+                        <label>New Password</label>
+                        <input type="password" name="new_password" class="form-control"
+                            placeholder="Leave blank to keep current password">
                     </div>
-                    <button type="submit" class="action-btn btn-primary">Save Changes</button>
+                    <button type="submit" name="change_details" class="action-btn btn-primary">Change Details</button>
                 </form>
             </div>
         </main>
