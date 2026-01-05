@@ -126,7 +126,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirm_pickup'])) {
                     <button class="mobile-toggle" id="mobileToggle" style="margin-right:10px;">☰</button>
                     📋 Pickup Details #<?= $request['collection_id'] ?>
                 </h2>
-                <a href="pickups.php" class="action-btn" style="background: #ddd; color: #333;">Back</a>
+                <div style="display:flex; align-items:center;">
+                    <a href="pickups.php" class="action-btn" style="background: #ddd; color: #333;">Back</a>
+                    <button class="theme-btn" id="themeToggle" title="Switch to Dark Mode">🌙</button>
+                </div>
             </div>
 
             <?php if (isset($success_msg))

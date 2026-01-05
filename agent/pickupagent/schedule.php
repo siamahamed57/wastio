@@ -58,6 +58,7 @@ $upcoming_res = mysqli_query($conn, $upcoming_sql);
                     <button class="mobile-toggle" id="mobileToggle" style="margin-right:10px;">☰</button>
                     📅 Daily Schedule
                 </h2>
+                <button class="theme-btn" id="themeToggle" title="Switch to Dark Mode">🌙</button>
             </div>
 
             <div class="schedule-section">

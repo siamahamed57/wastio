@@ -41,6 +41,7 @@ $result = mysqli_query($conn, $sql);
                     <button class="mobile-toggle" id="mobileToggle" style="margin-right:10px;">☰</button>
                     📦 Assigned Pickups
                 </h2>
+                <button class="theme-btn" id="themeToggle" title="Switch to Dark Mode">🌙</button>
             </div>
 
             <div class="table-container">

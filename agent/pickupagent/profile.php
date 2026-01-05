@@ -84,6 +84,7 @@ if (isset($_POST['change_details'])) {
                     <button class="mobile-toggle" id="mobileToggle" style="margin-right:10px;">☰</button>
                     👤 My Profile
                 </h2>
+                <button class="theme-btn" id="themeToggle" title="Switch to Dark Mode">🌙</button>
             </div>
 
             <?php if (isset($msg))
