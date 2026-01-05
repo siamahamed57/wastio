@@ -46,31 +46,7 @@ if (isset($_POST['change_details'])) {
     <title>My Profile - Wastio</title>
     <link rel="stylesheet" href="/wastio/assets/css/agent_dashboard.css?v=2">
     <script src="/wastio/assets/js/agent_dashboard.js"></script>
-    <style>
-        .profile-card {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            max-width: 600px;
-        }
 
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-        }
-    </style>
 </head>
 
 <body>
@@ -100,7 +76,7 @@ if (isset($_POST['change_details'])) {
                     <div class="form-group">
                         <label>Email (Cannot be changed)</label>
                         <input type="email" class="form-control" value="<?= htmlspecialchars($user['email'] ?? '') ?>"
-                            readonly style="background-color: #f5f5f5; cursor: not-allowed;">
+                            readonly>
                     </div>
                     <div class="form-group">
                         <label>New Password</label>

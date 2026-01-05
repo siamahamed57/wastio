@@ -30,22 +30,26 @@
     --white: #242424;
     --text-dark: #e0fbfb;
     --text-light: #b0bec5;
-    --primary-dark: #4dd0e1; /* Lighten for contrast */
+    --primary-dark: #4dd0e1;
+    /* Lighten for contrast */
     --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.3);
     --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.5);
-    
+
     /* Adjust specific components for dark mode */
     .sidebar {
         border-right: 1px solid #333;
     }
-    
+
     .nav-links a:hover,
     .nav-links a.active {
         background: linear-gradient(90deg, #2c3e50 0%, #242424 100%);
         color: var(--primary-color);
     }
 
-    .table-container, .stat-card, .info-card, .top-bar {
+    .table-container,
+    .stat-card,
+    .info-card,
+    .top-bar {
         border: 1px solid #333;
     }
 
@@ -53,18 +57,20 @@
         background: #2a2a2a;
         color: var(--text-dark);
     }
-    
+
     tbody tr:hover td {
         background: #333;
     }
-    
+
     .status-toggle {
         border: 1px solid #444;
         background: #2a2a2a;
     }
 
     /* Input fields in dark mode */
-    input, select, textarea {
+    input,
+    select,
+    textarea {
         background-color: #333;
         color: #eee;
         border: 1px solid #555;
@@ -89,12 +95,13 @@
 
 .theme-btn:hover {
     transform: rotate(30deg) scale(1.1);
-    color: var(--warning); /* Sun color */
-    background-color: rgba(0,0,0,0.05);
+    color: var(--warning);
+    /* Sun color */
+    background-color: rgba(0, 0, 0, 0.05);
 }
 
 [data-theme="dark"] .theme-btn:hover {
-    background-color: rgba(255,255,255,0.1);
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 body {
@@ -204,7 +211,7 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 50px;
-    background: white;
+    background: var(--white);
     padding: 20px 30px;
     border-radius: 15px;
     box-shadow: var(--shadow-sm);
@@ -455,4 +462,196 @@ tbody tr:hover td {
     .sidebar-overlay.active {
         display: block;
     }
+}
+
+/* Profile Section */
+.profile-card {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 12px;
+    max-width: 600px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: inherit;
+    box-sizing: border-box;
+    background-color: var(--white);
+    color: var(--text-dark);
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 183, 181, 0.1);
+}
+
+.form-control[readonly] {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+    color: #666;
+}
+
+[data-theme="dark"] .form-control {
+    background-color: #333;
+    border-color: #555;
+    color: #eee;
+}
+
+[data-theme="dark"] .form-control:focus {
+    border-color: var(--primary-color);
+}
+
+[data-theme="dark"] .form-control[readonly] {
+    background-color: #2a2a2a;
+    color: #aaa;
+    border-color: #444;
+}
+
+/* Pickup Details & General Info Cards */
+.details-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+}
+
+.info-card {
+    background: var(--white);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 25px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.info-row:last-child {
+    border-bottom: none;
+}
+
+.info-row .label {
+    font-weight: 600;
+    color: var(--text-light);
+}
+
+.map-frame {
+    width: 100%;
+    height: 200px;
+    background: #eee;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #777;
+    margin-top: 15px;
+}
+
+[data-theme="dark"] .map-frame {
+    background: #333;
+    color: #aaa;
+}
+
+[data-theme="dark"] .info-row {
+    border-bottom: 1px solid #333;
+}
+
+/* Back Button & Actions */
+.btn-secondary {
+    background: #e0e0e0;
+    color: #333;
+    padding: 8px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+    background: #d0d0d0;
+}
+
+[data-theme="dark"] .btn-secondary {
+    background: #333;
+    color: #eee;
+}
+
+[data-theme="dark"] .btn-secondary:hover {
+    background: #444;
+}
+
+@media (max-width: 768px) {
+    .details-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Utilities */
+.w-100 {
+    width: 100%;
+}
+
+.mt-5 {
+    margin-top: 5px;
+}
+
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.d-block {
+    display: block;
+}
+
+.btn-danger {
+    background: var(--danger);
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #c0392b;
+    /* Darker red */
+    color: white;
+}
+
+.alert-box {
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.alert-success {
+    background: var(--success);
+    color: white;
 }
