@@ -25,6 +25,78 @@
     --shadow-md: 0 10px 30px rgba(0, 84, 97, 0.1);
 }
 
+[data-theme="dark"] {
+    --bg-light: #1a1a1a;
+    --white: #242424;
+    --text-dark: #e0fbfb;
+    --text-light: #b0bec5;
+    --primary-dark: #4dd0e1; /* Lighten for contrast */
+    --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.5);
+    
+    /* Adjust specific components for dark mode */
+    .sidebar {
+        border-right: 1px solid #333;
+    }
+    
+    .nav-links a:hover,
+    .nav-links a.active {
+        background: linear-gradient(90deg, #2c3e50 0%, #242424 100%);
+        color: var(--primary-color);
+    }
+
+    .table-container, .stat-card, .info-card, .top-bar {
+        border: 1px solid #333;
+    }
+
+    td {
+        background: #2a2a2a;
+        color: var(--text-dark);
+    }
+    
+    tbody tr:hover td {
+        background: #333;
+    }
+    
+    .status-toggle {
+        border: 1px solid #444;
+        background: #2a2a2a;
+    }
+
+    /* Input fields in dark mode */
+    input, select, textarea {
+        background-color: #333;
+        color: #eee;
+        border: 1px solid #555;
+    }
+}
+
+/* Theme Toggle Button */
+.theme-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: var(--text-light);
+    transition: transform 0.3s ease, color 0.3s ease;
+    padding: 8px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 15px;
+}
+
+.theme-btn:hover {
+    transform: rotate(30deg) scale(1.1);
+    color: var(--warning); /* Sun color */
+    background-color: rgba(0,0,0,0.05);
+}
+
+[data-theme="dark"] .theme-btn:hover {
+    background-color: rgba(255,255,255,0.1);
+}
+
 body {
     background-color: var(--bg-light);
     font-family: 'Poppins', sans-serif;

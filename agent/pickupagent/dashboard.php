@@ -53,11 +53,12 @@ $history_count = mysqli_fetch_assoc($history_res)['count'];
                     </h2>
                     <p>Here's what's happening today.</p>
                 </div>
-                <div class="user-profile">
+                <div class="user-profile" style="display: flex; align-items: center;">
                     <div class="status-toggle">
                         <div class="status-indicator active"></div>
                         <span>Available</span>
                     </div>
+                    <button class="theme-btn" id="themeToggle" title="Switch to Dark Mode">🌙</button>
                 </div>
             </div>
 
