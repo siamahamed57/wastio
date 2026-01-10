@@ -35,8 +35,8 @@ $history_count = mysqli_fetch_assoc($history_res)['count'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agent Dashboard - Wastio</title>
-    <link rel="stylesheet" href="/wastio/assets/css/agent_dashboard.css?v=2">
-    <script src="/wastio/assets/js/agent_dashboard.js"></script>
+    <link rel="stylesheet" href="/wastio/assets/css/agent_dashboard.css?v=4">
+    <script src="/wastio/assets/js/agent_dashboard.js?v=4" defer></script>
 </head>
 
 <body>
@@ -124,7 +124,7 @@ $history_count = mysqli_fetch_assoc($history_res)['count'];
                             </tbody>
                         </table>
                     <?php } else { ?>
-                        <p style="text-align:center; padding: 20px; color: #666;">No assigned pickups found.</p>
+                        <p style="text-align:center; padding: 20px;">No assigned pickups found.</p>
                     <?php } ?>
                 </div>
             </div>

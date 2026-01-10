@@ -1,20 +1,66 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Mobile Sidebar Toggle
-    const mobileToggle = document.getElementById('mobileToggle');
+    // Sidebar Toggle Logic
+    const container = document.querySelector('.dashboard-container');
     const sidebar = document.querySelector('.sidebar');
     const overlay = document.querySelector('.sidebar-overlay');
 
-    if (mobileToggle) {
-        mobileToggle.addEventListener('click', () => {
-            sidebar.classList.toggle('active');
-            overlay.classList.toggle('active');
+    const isMobile = () => window.innerWidth <= 992;
+
+    const applySidebarState = (isCollapsed) => {
+        if (isCollapsed) {
+            container.classList.add('sidebar-collapsed');
+            if (isMobile()) {
+                sidebar.classList.remove('active');
+                overlay.classList.remove('active');
+            }
+        } else {
+            container.classList.remove('sidebar-collapsed');
+            if (isMobile()) {
+                sidebar.classList.add('active');
+                overlay.classList.add('active');
+            }
+        }
+    };
+
+    // Initial State on Load
+    const storedState = localStorage.getItem('sidebarCollapsed');
+    // On desktop: default visible (collapsed=false)
+    // On mobile: default hidden (collapsed=true)
+    let shouldBeCollapsed = (storedState === 'true');
+    if (storedState === null) {
+        shouldBeCollapsed = isMobile();
+    }
+    applySidebarState(shouldBeCollapsed);
+
+    const toggleSidebar = () => {
+        const currentlyCollapsed = container.classList.contains('sidebar-collapsed');
+        const newState = !currentlyCollapsed;
+        applySidebarState(newState);
+        localStorage.setItem('sidebarCollapsed', newState);
+    };
+
+    // Attach listeners
+    document.querySelectorAll('#mobileToggle, #sidebarToggle, #mobileClose').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            toggleSidebar();
+        });
+    });
+
+    if (overlay) {
+        overlay.addEventListener('click', (e) => {
+            e.preventDefault();
+            toggleSidebar();
         });
     }
 
-    if (overlay) {
-        overlay.addEventListener('click', () => {
-            sidebar.classList.remove('active');
-            overlay.classList.remove('active');
+    // Logout Confirmation
+    const logoutLink = document.getElementById('logoutLink');
+    if (logoutLink) {
+        logoutLink.addEventListener('click', function (e) {
+            if (!confirm('Are you sure you want to log out?')) {
+                e.preventDefault();
+            }
         });
     }
 

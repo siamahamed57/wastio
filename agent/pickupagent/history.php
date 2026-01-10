@@ -8,6 +8,17 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'Collection Agent') {
 }
 
 $agent_id = $_SESSION['user_id'];
+$msg = "";
+
+// Handle Clear History
+if (isset($_POST['clear_history'])) {
+    $clear_sql = "DELETE FROM collection_requests WHERE agent_id = '$agent_id' AND (pickup_status = 'Completed' OR pickup_status = 'Issue')";
+    if (mysqli_query($conn, $clear_sql)) {
+        $msg = "History cleared successfully.";
+    } else {
+        $msg = "Error clearing history: " . mysqli_error($conn);
+    }
+}
 
 // Initial query for history
 $sql = "SELECT cr.*, u.full_name as seller_name 
@@ -28,8 +39,8 @@ $result = mysqli_query($conn, $sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Collection History - Wastio</title>
-    <link rel="stylesheet" href="/wastio/assets/css/agent_dashboard.css?v=2">
-    <script src="/wastio/assets/js/agent_dashboard.js"></script>
+    <link rel="stylesheet" href="/wastio/assets/css/agent_dashboard.css?v=4">
+    <script src="/wastio/assets/js/agent_dashboard.js?v=4" defer></script>
 </head>
 
 <body>
@@ -39,12 +50,28 @@ $result = mysqli_query($conn, $sql);
 
         <main class="main-content">
             <div class="top-bar">
-                <h2>
-                    <button class="mobile-toggle" id="mobileToggle" style="margin-right:10px;">☰</button>
-                    📜 Collection History
-                </h2>
-                <button class="theme-btn" id="themeToggle" title="Switch to Dark Mode">🌙</button>
+                <div class="welcome-text">
+                    <h2>
+                        <button class="mobile-toggle" id="mobileToggle" style="margin-right:10px;">☰</button>
+                        📜 Collection History
+                    </h2>
+                    <p>Track your past collections and reports.</p>
+                </div>
+                <div style="display:flex; align-items:center;">
+                    <?php if (mysqli_num_rows($result) > 0): ?>
+                        <form method="POST"
+                            onsubmit="return confirm('Are you sure you want to clear your collection history? This action cannot be undone.');">
+                            <button type="submit" name="clear_history" class="action-btn btn-danger"
+                                style="margin-right: 15px;">Clear History</button>
+                        </form>
+                    <?php endif; ?>
+                    <button class="theme-btn" id="themeToggle" title="Switch to Dark Mode">🌙</button>
+                </div>
             </div>
+
+            <?php if ($msg): ?>
+                <div class="alert alert-success" style="margin-bottom: 20px;"><?= $msg ?></div>
+            <?php endif; ?>
 
             <div class="table-container">
                 <table>
