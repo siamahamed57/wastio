@@ -57,10 +57,15 @@
 [data-theme="dark"] .search-filter-bar,
 [data-theme="dark"] .request-item-card,
 [data-theme="dark"] .req-stat-mini,
-[data-theme="dark"] .details-card {
+[data-theme="dark"] .details-card,
+[data-theme="dark"] .empty-state-card {
     background: #1e1e1e !important;
-    border: 1px solid #333;
+    border: 1px solid #333 !important;
     box-shadow: var(--shadow-sm);
+}
+
+[data-theme="dark"] .sidebar li {
+    border-top-color: #333 !important;
 }
 
 [data-theme="dark"] .recent-section h3,
