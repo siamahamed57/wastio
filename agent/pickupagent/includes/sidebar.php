@@ -4,8 +4,8 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 <div class="sidebar-overlay"></div>
 <aside class="sidebar">
     <div class="sidebar-header">
-        <a href="../../index.php" class="brand">♻ Wastio</a>
-        <button class="mobile-toggle" id="mobileClose" style="display:none;">&times;</button>
+        <a href="/wastio/agent/pickupagent/dashboard.php" class="brand">♻ Wastio</a>
+        <button class="mobile-toggle" id="mobileClose">&times;</button>
     </div>
     <ul class="nav-links">
         <li>
@@ -39,7 +39,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
             </a>
         </li>
         <li style="margin-top: auto; border-top: 1px solid #eee;">
-            <a href="/wastio/auth/logout.php" style="color: #dc3545;">
+            <a href="/wastio/auth/logout.php" id="logoutLink" style="color: #dc3545;">
                 <i>🚪</i> <span>Logout</span>
             </a>
         </li>

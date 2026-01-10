@@ -69,8 +69,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirm_pickup'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pickup Details - Wastio</title>
-    <link rel="stylesheet" href="/wastio/assets/css/agent_dashboard.css?v=2">
-    <script src="/wastio/assets/js/agent_dashboard.js"></script>
+    <link rel="stylesheet" href="/wastio/assets/css/agent_dashboard.css?v=4">
+    <script src="/wastio/assets/js/agent_dashboard.js?v=4" defer></script>
 
 </head>
 
@@ -144,7 +144,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirm_pickup'])) {
                                 <option value="Issue" <?= $request['pickup_status'] == 'Issue' ? 'selected' : '' ?>>
                                     Issue</option>
                             </select>
-                            <button type="submit" name="update_status" class="action-btn btn-primary w-100">Update</button>
+                            <button type="submit" name="update_status"
+                                class="action-btn btn-primary w-100">Update</button>
                         </form>
 
                         <?php if ($request['pickup_status'] != 'Completed'): ?>
