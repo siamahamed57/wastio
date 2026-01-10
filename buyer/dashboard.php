@@ -36,6 +36,93 @@ $completed_count = mysqli_fetch_assoc($completed_res)['count'];
     <title>Buyer Dashboard - Wastio</title>
     <link rel="stylesheet" href="/wastio/assets/css/agent_dashboard.css?v=2">
     <script src="/wastio/assets/js/agent_dashboard.js"></script>
+    <style>
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .stat-card {
+            border: none;
+            background: linear-gradient(145deg, var(--white) 0%, #f9ffff 100%);
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-card::after {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 100px;
+            height: 100px;
+            background: var(--primary-color);
+            opacity: 0.05;
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .stat-card.orange::after {
+            background: #f39c12;
+        }
+
+        .stat-card.green::after {
+            background: #27ae60;
+        }
+
+        .stat-header i {
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover .stat-header i {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        .action-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .action-card {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 84, 97, 0.2);
+        }
+
+        .action-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 84, 97, 0.3);
+        }
+
+        .action-card h3 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .action-card p {
+            margin: 5px 0 0;
+            opacity: 0.8;
+        }
+
+        .action-card .icon {
+            font-size: 3rem;
+            opacity: 0.3;
+        }
+
+        [data-theme="dark"] .stat-card {
+            background: linear-gradient(145deg, #242424 0%, #1a1a1a 100%);
+        }
+    </style>
 </head>
 
 <body>
@@ -51,7 +138,7 @@ $completed_count = mysqli_fetch_assoc($completed_res)['count'];
                         👋 Welcome,
                         <?= htmlspecialchars($_SESSION['user_name']) ?>
                     </h2>
-                    <p>Find and purchase recycled waste items.</p>
+                    <p>Manage your recycled waste purchases efficiently.</p>
                 </div>
                 <div class="user-profile" style="display: flex; align-items: center;">
                     <button class="theme-btn" id="themeToggle" title="Switch to Dark Mode">🌙</button>
@@ -62,12 +149,12 @@ $completed_count = mysqli_fetch_assoc($completed_res)['count'];
                 <div class="stat-card blue">
                     <div class="stat-header">
                         <span>Total Requests</span>
-                        <i>📝</i>
+                        <i>📊</i>
                     </div>
                     <div class="stat-value">
                         <?= $total_req_count ?>
                     </div>
-                    <div class="stat-label">Overall items requested</div>
+                    <div class="stat-label">Items you've requested</div>
                 </div>
                 <div class="stat-card orange">
                     <div class="stat-header">
@@ -77,7 +164,7 @@ $completed_count = mysqli_fetch_assoc($completed_res)['count'];
                     <div class="stat-value">
                         <?= $pending_req_count ?>
                     </div>
-                    <div class="stat-label">Awaiting seller response</div>
+                    <div class="stat-label">Awaiting approval</div>
                 </div>
                 <div class="stat-card green">
                     <div class="stat-header">
@@ -87,12 +174,34 @@ $completed_count = mysqli_fetch_assoc($completed_res)['count'];
                     <div class="stat-value">
                         <?= $completed_count ?>
                     </div>
-                    <div class="stat-label">Successful acquisitions</div>
+                    <div class="stat-label">Successfully bought</div>
                 </div>
             </div>
 
-            <div class="recent-section">
-                <h3>My Recent Requests</h3>
+            <div class="action-cards">
+                <a href="marketplace.php" class="action-card">
+                    <div>
+                        <h3>Explore Marketplace</h3>
+                        <p>Browse new waste items available for sale.</p>
+                    </div>
+                    <div class="icon">🛒</div>
+                </a>
+                <a href="requests.php" class="action-card"
+                    style="background: linear-gradient(135deg, #018790 0%, #00B7B5 100%);">
+                    <div>
+                        <h3>Track Requests</h3>
+                        <p>View the status of your current orders.</p>
+                    </div>
+                    <div class="icon">📝</div>
+                </a>
+            </div>
+
+            <div class="recent-section" style="margin-top: 40px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h3>Recent Requests</h3>
+                    <a href="requests.php"
+                        style="color: var(--primary-color); font-weight: 600; text-decoration: none;">View All →</a>
+                </div>
                 <div class="table-container">
                     <?php
                     $recent_sql = "SELECT br.*, wi.title, wi.price FROM buy_requests br 
@@ -116,30 +225,27 @@ $completed_count = mysqli_fetch_assoc($completed_res)['count'];
                             <tbody>
                                 <?php while ($row = mysqli_fetch_assoc($recent_res)): ?>
                                     <tr>
-                                        <td>#
-                                            <?= $row['request_id'] ?>
-                                        </td>
-                                        <td>
-                                            <?= htmlspecialchars($row['title']) ?>
-                                        </td>
-                                        <td>$
-                                            <?= number_format($row['price'], 2) ?>
-                                        </td>
+                                        <td>#<?= $row['request_id'] ?></td>
+                                        <td><?= htmlspecialchars($row['title']) ?></td>
+                                        <td>$<?= number_format($row['price'], 2) ?></td>
                                         <td><span
                                                 class="status-badge <?= strtolower($row['status']) == 'pending' ? 'pending' : (strtolower($row['status']) == 'accepted' ? 'completed' : 'issue') ?>">
                                                 <?= $row['status'] ?>
                                             </span></td>
                                         <td>
-                                            <a href="request_details.php?id=<?= $row['request_id'] ?>"
-                                                class="action-btn btn-primary">View</a>
+                                            <a href="requests.php" class="action-btn btn-primary">View</a>
                                         </td>
                                     </tr>
                                 <?php endwhile; ?>
                             </tbody>
                         </table>
                     <?php } else { ?>
-                        <p style="text-align:center; padding: 20px; color: #666;">No requests found. Explore the
-                            marketplace!</p>
+                        <div style="text-align:center; padding: 40px; color: #666;">
+                            <div style="font-size: 3rem; margin-bottom: 15px;">🔍</div>
+                            <p>No requests found. Start exploring the marketplace!</p>
+                            <a href="marketplace.php" class="action-btn btn-primary" style="margin-top: 15px;">Go to
+                                Marketplace</a>
+                        </div>
                     <?php } ?>
                 </div>
             </div>
