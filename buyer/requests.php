@@ -34,8 +34,8 @@ $result = mysqli_query($conn, $query);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Requests - Wastio</title>
-    <link rel="stylesheet" href="/wastio/assets/css/agent_dashboard.css?v=2">
-    <script src="/wastio/assets/js/agent_dashboard.js"></script>
+    <link rel="stylesheet" href="/wastio/assets/css/agent_dashboard.css?v=5">
+    <script src="/wastio/assets/js/agent_dashboard.js?v=5" defer></script>
     <style>
         .requests-stats {
             display: flex;
@@ -169,7 +169,9 @@ $result = mysqli_query($conn, $query);
         <main class="main-content">
             <div class="top-bar">
                 <div class="welcome-text">
-                    <h2><i>📝</i> My Purchase Requests</h2>
+                    <h2><button class="mobile-toggle" id="mobileToggle" style="margin-right:10px;">☰</button>
+                        <i>📝</i> My Purchase Requests
+                    </h2>
                     <p>Track the status of your waste item requests.</p>
                 </div>
                 <div class="user-profile">
@@ -243,11 +245,10 @@ $result = mysqli_query($conn, $query);
                         </div>
                     <?php endwhile; ?>
                 <?php else: ?>
-                    <div
-                        style="text-align: center; padding: 50px; background: white; border-radius: 20px; box-shadow: var(--shadow-sm);">
+                    <div class="empty-state-card" style="text-align: center; padding: 50px; border-radius: 20px;">
                         <div style="font-size: 4rem; margin-bottom: 20px;">📜</div>
                         <h3>You haven't made any requests yet.</h3>
-                        <p style="color: #666;">Browse the marketplace to find items you need!</p>
+                        <p>Browse the marketplace to find items you need!</p>
                         <a href="marketplace.php" class="action-btn btn-primary" style="margin-top:20px;">Go to
                             Marketplace</a>
                     </div>

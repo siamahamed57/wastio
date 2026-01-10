@@ -38,8 +38,8 @@ $req = mysqli_fetch_assoc($result);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Request Details - Wastio</title>
-    <link rel="stylesheet" href="/wastio/assets/css/agent_dashboard.css?v=2">
-    <script src="/wastio/assets/js/agent_dashboard.js"></script>
+    <link rel="stylesheet" href="/wastio/assets/css/agent_dashboard.css?v=5">
+    <script src="/wastio/assets/js/agent_dashboard.js?v=5" defer></script>
     <style>
         .details-card {
             background: white;
@@ -147,7 +147,8 @@ $req = mysqli_fetch_assoc($result);
         <main class="main-content">
             <div class="top-bar">
                 <div class="welcome-text">
-                    <h2><a href="requests.php" style="text-decoration:none; color:inherit;">⬅</a> Request #
+                    <h2><button class="mobile-toggle" id="mobileToggle" style="margin-right:10px;">☰</button>
+                        <a href="requests.php" style="text-decoration:none; color:inherit;">⬅</a> Request #
                         <?= $req['request_id'] ?>
                     </h2>
                     <p>Detailed view of your purchase request.</p>

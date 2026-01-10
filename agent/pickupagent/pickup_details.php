@@ -69,50 +69,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirm_pickup'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pickup Details - Wastio</title>
-    <link rel="stylesheet" href="/wastio/assets/css/agent_dashboard.css?v=2">
-    <script src="/wastio/assets/js/agent_dashboard.js"></script>
-    <style>
-        .details-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 20px;
-        }
+    <link rel="stylesheet" href="/wastio/assets/css/agent_dashboard.css?v=4">
+    <script src="/wastio/assets/js/agent_dashboard.js?v=4" defer></script>
 
-        .info-card {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            margin-bottom: 20px;
-        }
-
-        .info-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .info-row:last-child {
-            border-bottom: none;
-        }
-
-        .label {
-            font-weight: 600;
-            color: #555;
-        }
-
-        .map-frame {
-            width: 100%;
-            height: 200px;
-            background: #eee;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #777;
-        }
-    </style>
 </head>
 
 <body>
@@ -127,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirm_pickup'])) {
                     📋 Pickup Details #<?= $request['collection_id'] ?>
                 </h2>
                 <div style="display:flex; align-items:center;">
-                    <a href="pickups.php" class="action-btn" style="background: #ddd; color: #333;">Back</a>
+                    <a href="pickups.php" class="action-btn btn-secondary">Back</a>
                     <button class="theme-btn" id="themeToggle" title="Switch to Dark Mode">🌙</button>
                 </div>
             </div>
@@ -176,35 +135,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirm_pickup'])) {
                     <div class="info-card">
                         <h3>Actions</h3>
 
-                        <form method="POST" style="margin-bottom: 20px;">
+                        <form method="POST" class="mb-20">
                             <label class="label">Update Status</label>
-                            <select name="status" class="action-btn"
-                                style="width: 100%; margin-top: 5px; margin-bottom: 10px; display:block;">
+                            <select name="status" class="action-btn w-100 mt-5 mb-10 d-block">
                                 <option value="Assigned" <?= $request['pickup_status'] == 'Assigned' ? 'selected' : '' ?>>
                                     Assigned (Pending)</option>
                                 <option value="Picked Up" <?= $request['pickup_status'] == 'Picked Up' ? 'selected' : '' ?>>Picked Up</option>
                                 <option value="Issue" <?= $request['pickup_status'] == 'Issue' ? 'selected' : '' ?>>
                                     Issue</option>
                             </select>
-                            <button type="submit" name="update_status" class="action-btn btn-primary"
-                                style="width:100%;">Update</button>
+                            <button type="submit" name="update_status"
+                                class="action-btn btn-primary w-100">Update</button>
                         </form>
 
                         <?php if ($request['pickup_status'] != 'Completed'): ?>
                             <form method="POST" onsubmit="return confirm('Confirm completion of this pickup?');">
-                                <button type="submit" name="confirm_pickup" class="action-btn btn-primary"
-                                    style="width:100%; background-color: var(--success);">
+                                <button type="submit" name="confirm_pickup" class="action-btn btn-primary w-100"
+                                    style="background-color: var(--success);">
                                     ✅ Confirm Pickup
                                 </button>
                             </form>
                         <?php else: ?>
-                            <div class="alert"
-                                style="background:var(--success); color:white; padding:10px; border-radius:5px; text-align:center;">
+                            <div class="alert-box alert-success">
                                 Pickup Completed</div>
                         <?php endif; ?>
 
                         <br>
-                        <button class="action-btn" style="width:100%; background:#dc3545; color:white;"
+                        <br>
+                        <button class="action-btn btn-danger w-100"
                             onclick="alert('Issue Reporting Modal would open here')">
                             ⚠️ Report Issue
                         </button>
