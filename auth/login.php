@@ -7,7 +7,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['role'])) {
 
     switch ($userRole) {
         case 'Waste Buyer':
-            header("Location: buyer/dashboard.php");
+            header("Location: /wastio/buyer/dashboard.php");
             exit;
         case 'Waste Seller':
             header("Location: seller/dashboard.php");
@@ -67,7 +67,7 @@ if (isset($_POST['login'])) {
 
             switch ($userRole) {
                 case 'Waste Buyer':
-                    header("Location: buyer/dashboard.php");
+                    header("Location: /wastio/buyer/dashboard.php");
                     exit;
                 case 'Waste Seller':
                     header("Location: seller/dashboard.php");

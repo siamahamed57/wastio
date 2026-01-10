@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-=======
 <?php
 session_start();
 require_once "../config/db.php";
@@ -256,6 +254,4 @@ $completed_count = mysqli_fetch_assoc($completed_res)['count'];
     </div>
 
 </body>
-
 </html>
->>>>>>> Stashed changes
