@@ -41,8 +41,8 @@ $cat_result = mysqli_query($conn, $cat_query);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marketplace - Wastio</title>
-    <link rel="stylesheet" href="/wastio/assets/css/agent_dashboard.css?v=2">
-    <script src="/wastio/assets/js/agent_dashboard.js"></script>
+    <link rel="stylesheet" href="/wastio/assets/css/agent_dashboard.css?v=5">
+    <script src="/wastio/assets/js/agent_dashboard.js?v=5" defer></script>
     <style>
         .marketplace-grid {
             display: grid;
@@ -209,7 +209,9 @@ $cat_result = mysqli_query($conn, $cat_query);
         <main class="main-content">
             <div class="top-bar">
                 <div class="welcome-text">
-                    <h2><i>🛒</i> Waste Marketplace</h2>
+                    <h2><button class="mobile-toggle" id="mobileToggle" style="margin-right:10px;">☰</button>
+                        <i>🛒</i> Waste Marketplace
+                    </h2>
                     <p>Discover available recycled materials for purchase.</p>
                 </div>
                 <div class="user-profile">
@@ -271,11 +273,11 @@ $cat_result = mysqli_query($conn, $cat_query);
                         </div>
                     <?php endwhile; ?>
                 <?php else: ?>
-                    <div
-                        style="grid-column: 1 / -1; text-align: center; padding: 50px; background: white; border-radius: 20px; box-shadow: var(--shadow-sm);">
+                    <div class="empty-state-card"
+                        style="grid-column: 1 / -1; text-align: center; padding: 50px; border-radius: 20px;">
                         <div style="font-size: 4rem; margin-bottom: 20px;">🏜️</div>
                         <h3>No items found in the marketplace.</h3>
-                        <p style="color: #666;">Check back later or try a different search!</p>
+                        <p>Check back later or try a different search!</p>
                     </div>
                 <?php endif; ?>
             </div>

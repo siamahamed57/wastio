@@ -34,8 +34,8 @@ $completed_count = mysqli_fetch_assoc($completed_res)['count'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buyer Dashboard - Wastio</title>
-    <link rel="stylesheet" href="/wastio/assets/css/agent_dashboard.css?v=2">
-    <script src="/wastio/assets/js/agent_dashboard.js"></script>
+    <link rel="stylesheet" href="/wastio/assets/css/agent_dashboard.css?v=5">
+    <script src="/wastio/assets/js/agent_dashboard.js?v=5" defer></script>
     <style>
         .stats-grid {
             display: grid;
@@ -254,5 +254,4 @@ $completed_count = mysqli_fetch_assoc($completed_res)['count'];
     </div>
 
 </body>
-
 </html>

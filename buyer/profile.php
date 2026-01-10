@@ -62,8 +62,8 @@ $user = mysqli_fetch_assoc($res);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile - Wastio Buyer</title>
-    <link rel="stylesheet" href="/wastio/assets/css/agent_dashboard.css?v=2">
-    <script src="/wastio/assets/js/agent_dashboard.js"></script>
+    <link rel="stylesheet" href="/wastio/assets/css/agent_dashboard.css?v=5">
+    <script src="/wastio/assets/js/agent_dashboard.js?v=5" defer></script>
     <style>
         .profile-container {
             max-width: 800px;
@@ -259,7 +259,9 @@ $user = mysqli_fetch_assoc($res);
         <main class="main-content">
             <div class="top-bar">
                 <div class="welcome-text">
-                    <h2><i>👤</i> My Profile</h2>
+                    <h2><button class="mobile-toggle" id="mobileToggle" style="margin-right:10px;">☰</button>
+                        <i>👤</i> My Profile
+                    </h2>
                     <p>View and manage your account information.</p>
                 </div>
                 <button class="theme-btn" id="themeToggle">🌙</button>

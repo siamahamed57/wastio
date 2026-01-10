@@ -28,8 +28,8 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                 <i>👤</i> <span>Profile</span>
             </a>
         </li>
-        <li style="margin-top: auto; border-top: 1px solid #eee;">
-            <a href="/wastio/auth/logout.php" style="color: #dc3545;">
+        <li style="margin-top: auto; border-top: 1px solid rgba(0, 0, 0, 0.05);">
+            <a href="/wastio/auth/logout.php" id="logoutLink" style="color: #dc3545;">
                 <i>🚪</i> <span>Logout</span>
             </a>
         </li>
