@@ -166,3 +166,152 @@ button:active {
         padding: 30px 25px;
     }
 }
+/* Password Strength Indicator */
+.password-input {
+    position: relative;
+}
+
+.password-input input {
+    padding-right: 40px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #6b7280;
+    transition: color 0.3s ease;
+}
+
+.toggle-password:hover {
+    color: #1f2937;
+}
+
+.password-strength {
+    margin-top: 0.5rem;
+}
+
+.strength-bar {
+    height: 4px;
+    background: #e5e7eb;
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 0.25rem;
+}
+
+.strength-fill {
+    height: 100%;
+    width: 0%;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+.strength-fill.weak {
+    width: 33%;
+    background: #ef4444;
+}
+
+.strength-fill.medium {
+    width: 66%;
+    background: #f59e0b;
+}
+
+.strength-fill.strong {
+    width: 100%;
+    background: #10b981;
+}
+
+.strength-text {
+    font-size: 0.75rem;
+    color: #6b7280;
+}
+
+.strength-text.weak {
+    color: #ef4444;
+}
+
+.strength-text.medium {
+    color: #f59e0b;
+}
+
+.strength-text.strong {
+    color: #10b981;
+}
+
+/* Error Messages */
+.error-msg {
+    display: block;
+    color: #ef4444;
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+    min-height: 1rem;
+}
+
+.form-group input.error,
+.form-group select.error {
+    border-color: #ef4444;
+}
+
+.form-group input.success,
+.form-group select.success {
+    border-color: #10b981;
+}
+
+/* Remember Me Checkbox */
+.remember-me {
+    margin-bottom: 15px !important;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+}
+
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    height: 20px;
+    width: 20px;
+    background-color: white;
+    border: 2px solid #018790;
+    border-radius: 4px;
+    margin-right: 10px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.checkbox-container:hover .checkmark {
+    border-color: #00B7B5;
+    box-shadow: 0 0 0 3px rgba(0, 183, 181, 0.1);
+}
+
+.checkbox-container input:checked ~ .checkmark {
+    background: linear-gradient(135deg, #018790 0%, #00B7B5 100%);
+    border-color: #00B7B5;
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+    content: '';
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.checkbox-label {
+    color: #005461;
+    font-size: 0.9rem;
+    font-weight: 400;
+}
