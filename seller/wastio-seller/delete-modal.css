@@ -1,0 +1,85 @@
+/* Delete Confirmation Modal */
+.delete-modal {
+    max-width: 450px;
+    text-align: center;
+    padding: 2rem;
+}
+
+.delete-modal-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    background: linear-gradient(135deg, #fee2e2, #fecaca);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: pulse 2s infinite;
+    transition: background 0.3s ease;
+}
+
+[data-theme="dark"] .delete-modal-icon {
+    filter: brightness(0.8);
+}
+
+.delete-modal-icon i {
+    font-size: 2.5rem;
+    color: #dc2626;
+    transition: color 0.3s ease;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.delete-modal h3 {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.delete-modal p {
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.delete-modal-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.delete-modal-actions .btn {
+    min-width: 120px;
+}
+/* Mark as Sold Modal Icon */
+.sold-modal-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: pulse 2s infinite;
+}
+
+[data-theme="dark"] .sold-modal-icon {
+    background: linear-gradient(135deg, #065f46, #047857);
+}
+
+.sold-modal-icon i {
+    font-size: 2.5rem;
+    color: #059669;
+}
